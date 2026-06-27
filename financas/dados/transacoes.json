@@ -1,0 +1,114 @@
+[
+    {
+        "user_email": "admin@admin",
+        "tipo": "entrada",
+        "categoria": "Salario",
+        "valor": 12000,
+        "data": "05/06/2026"
+    },
+    {
+        "user_email": "admin@admin",
+        "tipo": "saida",
+        "categoria": "Moradia",
+        "valor": 1500,
+        "data": "15/06/2026"
+    },
+    {
+        "user_email": "admin@admin",
+        "tipo": "saida",
+        "categoria": "Outros",
+        "valor": 500,
+        "data": "25/06/2026"
+    },
+    {
+        "user_email": "chorenafeature@user",
+        "tipo": "entrada",
+        "categoria": "Salario",
+        "valor": 8000,
+        "data": "05/06/2026"
+    },
+    {
+        "user_email": "chorenafeature@user",
+        "tipo": "saida",
+        "categoria": "Alimentacao",
+        "valor": 833,
+        "data": "15/06/2026"
+    },
+    {
+        "user_email": "chorenafeature@user",
+        "tipo": "saida",
+        "categoria": "Lazer",
+        "valor": 400,
+        "data": "25/06/2026"
+    },
+    {
+        "user_email": "lucasguloso@user",
+        "tipo": "entrada",
+        "categoria": "Salario",
+        "valor": 3000,
+        "data": "05/06/2026"
+    },
+    {
+        "user_email": "lucasguloso@user",
+        "tipo": "saida",
+        "categoria": "Alimentacao",
+        "valor": 360,
+        "data": "15/06/2026"
+    },
+    {
+        "user_email": "lucasguloso@user",
+        "tipo": "saida",
+        "categoria": "Transporte",
+        "valor": 200,
+        "data": "25/06/2026"
+    },
+    {
+        "user_email": "aninhafazcompleto@user",
+        "tipo": "entrada",
+        "categoria": "Salario",
+        "valor": 1500,
+        "data": "05/06/2026"
+    },
+    {
+        "user_email": "aninhafazcompleto@user",
+        "tipo": "saida",
+        "categoria": "Moradia",
+        "valor": 900,
+        "data": "15/06/2026"
+    },
+    {
+        "user_email": "aninhafazcompleto@user",
+        "tipo": "saida",
+        "categoria": "Saude",
+        "valor": 350,
+        "data": "25/06/2026"
+    },
+    {
+        "user_email": "chorenafeature@user",
+        "tipo": "saida",
+        "categoria": "Transporte",
+        "valor": 200.0,
+        "data": "26/06/2026"
+    },
+    {
+        "user_email": "chorenafeature@user",
+        "tipo": "entrada",
+        "categoria": "Lazer",
+        "valor": 100.0,
+        "data": "26/06/2026"
+    },
+    {
+        "user_email": "chorenafeature@user",
+        "tipo": "saida",
+        "categoria": "Alimentacao",
+        "valor": 300.0,
+        "data": "26/06/2026"
+    },
+    {
+        "user_email": "chorenafeature@user",
+        "tipo": "entrada",
+        "categoria": "Outros",
+        "valor": 100.0,
+        "data": "26/06/2026"
+    }
+]

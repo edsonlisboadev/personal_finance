@@ -1,91 +1,82 @@
-users = [
-    {"type": "admin",
-    "user_email": "admin@admin",
-    "user_password": 1234,
-    "balance": 10000,
-    "limit": 10000},
-
-    {"type": "user",
-    "user_email": "chorenafeature@user",
-    "user_password": 6767,
-    "balance": 6767,
-    "limit": 86400},
-
-    {"type": "user",
-    "user_email": "lucasguloso@user",
-    "user_password": 6969,
-    "balance": 2440,
-    "limit": 30},
-
-    {"type": "user",
-    "user_email": "aninhafazcompleto@user",
-    "user_password": 8888,
-    "balance": 250,
-    "limit": 3600}
-]
-
-for user in users:
-    user['max_limit'] = user['limit']
+# bank.py - operacoes do banco (saldo, saque, deposito...)
+import storage
 
 
-def get_balance(user):
-    return user['balance']
+def carregar_usuarios():
+    """Pega os usuarios. O storage ja cuida de criar os padrao na primeira vez."""
+    return storage.carregar_users()
 
 
-def get_limit(user):
-    return user['limit']
+def consultar_saldo(user):
+    return user["balance"]
 
 
-def withdraw(user, amount):
-    balance = user['balance']
-    limit = user['limit']
+def consultar_limite(user):
+    return user["limit"]
 
-    if amount > balance + limit:
-        print("não tem saldo suficiente")
+
+def sacar(users, user, valor):
+    """Tenta sacar um valor. Pode usar o saldo e depois o limite.
+    Devolve (deu_certo, mensagem)."""
+    saldo = user["balance"]
+    limite = user["limit"]
+
+    if valor > saldo + limite:
+        falta = valor - (saldo + limite)
+        return False, f"Saldo e limite insuficientes. Falta R${falta:.2f}"
+
+    if valor > saldo:
+        diferenca = valor - saldo
+        limite -= diferenca
+        saldo = 0
     else:
-        if amount > balance:
-            difference = amount - balance
-            limit -= difference
-            balance = 0
+        saldo -= valor
+
+    user["balance"] = saldo
+    user["limit"] = limite
+    storage.salvar_users(users)
+    return True, f"Saque realizado! Saldo atual: R${saldo:.2f}"
+
+
+def depositar(users, user, valor):
+    """Deposita um valor. Se o limite estiver gasto, ele recupera o limite primeiro.
+    Devolve (deu_certo, mensagem)."""
+    saldo = user["balance"]
+    limite = user["limit"]
+    limite_max = user["max_limit"]
+
+    if limite < limite_max:
+        diferenca = limite_max - limite
+        if valor >= diferenca:
+            limite = limite_max
+            saldo += valor - diferenca
         else:
-            balance -= amount
-
-        user['balance'] = balance
-        user['limit'] = limit
-
-        print(f"Saque realizado! Saldo atual: R${balance:.2f}")
-
-
-def deposit(user, amount):
-    balance = user['balance']
-    limit = user['limit']
-    max_limit = user['max_limit']
-
-    if limit < max_limit:
-        difference = max_limit - limit
-        if amount >= difference:
-            limit = max_limit
-            balance += amount - difference
-            print(f"Limite restaurado! Saldo: R${balance:.2f}")
-        else:
-            limit += amount
-            print(f"Limite atualizado: R${limit:.2f}")
+            limite += valor
     else:
-        balance += amount
-        print(f"Saldo atual: R${balance:.2f}")
+        saldo += valor
 
-    user['balance'] = balance
-    user['limit'] = limit
-    print("Depósito realizado com sucesso")
+    user["balance"] = saldo
+    user["limit"] = limite
+    storage.salvar_users(users)
+    return True, f"Deposito realizado! Saldo atual: R${saldo:.2f}"
 
-test_user = users[2]
-print("Antes:", test_user)
 
-withdraw(test_user, 2450)
-print("Depois do saque:", test_user)
+def adicionar_ao_saldo(users, user, valor):
+    """Soma um valor no saldo (usado quando entra dinheiro)."""
+    user["balance"] += valor
+    storage.salvar_users(users)
 
-deposit(test_user, 5)
-print("Depois do depósito 1:", test_user)
 
-deposit(test_user, 10)
-print("Depois do depósito 2:", test_user)
+def tirar_do_saldo(users, user, valor):
+    """Tira um valor do saldo (usado quando tem um gasto).
+    Devolve True se conseguiu, False se nao tinha saldo."""
+    if valor > user["balance"]:
+        return False
+    user["balance"] -= valor
+    storage.salvar_users(users)
+    return True
+
+
+def atualizar_usuario(users):
+    """Salva qualquer alteracao feita nos usuarios (usado pelo gerente)."""
+    storage.salvar_users(users)

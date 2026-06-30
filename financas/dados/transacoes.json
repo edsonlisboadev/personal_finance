@@ -110,5 +110,33 @@
         "categoria": "Outros",
         "valor": 100.0,
         "data": "26/06/2026"
+    },
+    {
+        "user_email": "chorenafeature@user",
+        "tipo": "saida",
+        "categoria": "Lazer",
+        "valor": 4000.0,
+        "data": "30/06/2026"
+    },
+    {
+        "user_email": "chorenafeature@user",
+        "tipo": "entrada",
+        "categoria": "Outros",
+        "valor": 10000.0,
+        "data": "30/06/2026"
+    },
+    {
+        "user_email": "chorenafeature@user",
+        "tipo": "saida",
+        "categoria": "Lazer",
+        "valor": 1500.0,
+        "data": "30/06/2026"
+    },
+    {
+        "user_email": "chorenafeature@user",
+        "tipo": "entrada",
+        "categoria": "Lazer",
+        "valor": 1500.0,
+        "data": "30/06/2026"
     }
 ]

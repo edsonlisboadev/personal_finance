@@ -11,7 +11,7 @@
         "type": "user",
         "user_email": "chorenafeature@user",
         "user_password": 6767,
-        "balance": 5767.0,
+        "balance": 0,
         "limit": 86400,
         "max_limit": 86400
     },
